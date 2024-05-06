@@ -2,7 +2,7 @@
 HEY YOU! Tired of the chaos caused by memory mappings landing just about anywhere?😤 Today, we’re turning the tables on ASLR with a **WILD** cache timing attack!
 
 **Challenge:** [The_wilderness](https://open.ecsc2024.it/challenges#challenge-19) (openECSC 2024 round 2) 
-**Attack Type:** Timing caches accesses to leak binary base.
+**Attack Type:** Timing memory accesses to leak binary base.
 # Introduction
 This challenge is pretty straightforward, a new memory mapping is created at a fixed address and the user’s shellcode is readed into it. All registers are zeroed out, and the execution of the user’s code starts.
 
@@ -39,9 +39,10 @@ This is a family of instructions used to move the specified pice of data from th
 Since both instruction families need to retrieve a value from memory, the first thing done is to look into the *cache*. If the value is found there, there is no need to look further; otherwise, the *RAM* is searched. 
 Both memory types of memory are really fast to access, **however**, accessing the former is significantly faster than the latter. Timing how much time an instruction takes to execute tells us whether the target value was found in the cache or if the RAM was searched.
 ## Exploitation Strategy
-We are going to exploit the fact that valid memory can be cached, while invalid memory cannot, for obvious reasons. We will attempt to access each memory location twice. Depending on whether that location is valid memory or not, we would observe two different behaviors:
+We are going to exploit the fact that valid memory can be cached, while invalid memory, for obvious reasons, cannot. We will attempt to access each memory location twice. Depending on whether that location is valid memory or not, we would observe two different behaviors:
 1. **Valid Memory**: The memory could be cached or not. If it isn’t, the CPU will cache it now. This ensures that on the second access, the memory will be cached and this access will be fast.
-2. **Invalid Memory**: In this case, the CPU will first search the cache and then the RAM. The key takeaway is that on an invalid address, the RAM will always be searched, so the instruction will always take a longer time to execute. 
+2. **Invalid Memory**: In this case, the CPU will first search the cache and then the RAM. 
+The key takeaway is that on an invalid address, the RAM will always be searched, so the instruction will always take a longer time to execute. 
 ## CPU Speculation
 Modern CPUs employ a technique known as **speculative execution** to enhance performance. This process involves the CPU making educated guesses about future instructions and executing them in advance. While this can  boost efficiency, it can lead to unintended side effects in our context.
 Speculative execution can cause our timing measurements to be inaccurate, as the CPU might execute instructions ahead of time, impairing our ability to distinguish between valid and invalid memory based on execution time.
