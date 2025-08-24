@@ -3,7 +3,7 @@
 Secure Boot you say? Lua running as a uefi application you say??
 What about some Secure Boot war crimes???
 
-**Challenge:** [Lua.efi](https://ctfd-2025.uiuc.tf/challenges#Lua.efi-4) (uiuic 2025)  
+**Challenge:** [Lua.efi](https://ctfd-2025.uiuc.tf/challenges#Lua.efi-4) (uiuctf 2025)  
 # Introduction
 
 Oh hello there! This is a write-up for Lua.efi, a UEFI challenge from UIUCTF 2025 that I and other TRX member solved. For us, this was our first time pwning UEFI, and it was a fantastic learning experience.
