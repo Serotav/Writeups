@@ -1,3 +1,11 @@
+---
+layout: default
+title: Linecrosser
+description: Mathematically accurate stack pivoting.
+permalink: /writeups/linecrosser/
+section: writeups
+---
+
 # Overview
 Welcome to the thrilling tale of how a *seemingly insignificant* oversight led me on a wild ride through the world of stack pivoting with mathematical precision.
 

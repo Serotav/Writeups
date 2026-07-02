@@ -1,3 +1,11 @@
+---
+layout: default
+title: Triwizard Maze
+description: ROP-based depth-first search.
+permalink: /writeups/triwizard-maze/
+section: writeups
+---
+
 # Overview
 ``` poetry
 Midway upon the journey of our life

@@ -1,3 +1,11 @@
+---
+layout: default
+title: Lua.efi
+description: Booting an unsigned kernel using Lua from UEFI.
+permalink: /writeups/lua-efi/
+section: writeups
+---
+
 # Overview
 
 Secure Boot you say? Lua running as a uefi application you say??

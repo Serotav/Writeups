@@ -1,3 +1,11 @@
+---
+layout: default
+title: The Wilderness
+description: Breaking ASLR by timing memory access.
+permalink: /writeups/the-wilderness/
+section: writeups
+---
+
 # Overview
 HEY YOU! Tired of the chaos caused by memory mappings landing just about anywhere?😤 Today, we’re turning the tables on ASLR with a **WILD** cache timing attack!
 

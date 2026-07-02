@@ -1,0 +1,6 @@
+title: Serotav Writeups
+description: CTF/pwn writeups and V8 exploitation notes.
+theme: jekyll-theme-hacker
+show_downloads: false
+url: "https://serotav.github.io"
+baseurl: "/Writeups"
