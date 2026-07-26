@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Linecrosser
+date: 2024-05-05
 description: Mathematically accurate stack pivoting.
 permalink: /writeups/linecrosser/
 section: writeups

@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Lua.efi
+date: 2025-08-10
 description: Booting an unsigned kernel using Lua from UEFI.
 permalink: /writeups/lua-efi/
 section: writeups

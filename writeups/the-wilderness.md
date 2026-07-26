@@ -1,6 +1,7 @@
 ---
 layout: default
 title: The Wilderness
+date: 2024-05-05
 description: Breaking ASLR by timing memory access.
 permalink: /writeups/the-wilderness/
 section: writeups

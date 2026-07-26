@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Triwizard Maze
+date: 2024-06-06
 description: ROP-based depth-first search.
 permalink: /writeups/triwizard-maze/
 section: writeups
