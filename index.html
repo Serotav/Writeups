@@ -1,0 +1,27 @@
+---
+layout: default
+title: Serotav Writeups
+---
+
+{% assign posts = site.pages | where_exp: "post", "post.date" | sort: "date" | reverse %}
+<ul class="feed">
+{% for post in posts %}
+  {%- comment -%}
+    Excerpt = text of the first few paragraphs only, so headings and code
+    blocks never leak into the card. A paragraph ending in ":" introduces a
+    block we are dropping, so it ends the excerpt instead of dangling.
+  {%- endcomment -%}
+  {%- assign paragraphs = post.content | markdownify | split: "<p>" -%}
+  {%- capture prose %}{% for para in paragraphs offset: 1 limit: 5 %}{% assign text = para | split: "</p>" | first | strip %}{% assign tail = text | slice: -1 %}{% if tail == ":" %}{% break %}{% endif %}{{ text }} {% endfor %}{% endcapture -%}
+  {%- if prose == blank %}{% assign prose = paragraphs[1] | split: "</p>" | first %}{% endif -%}
+  <li>
+    <a class="card" href="{{ post.url | relative_url }}">
+      <span class="card__head">
+        <span class="card__title">{{ post.title }}</span>
+        <time class="card__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+      </span>
+      <span class="card__excerpt">{{ prose | strip_html | normalize_whitespace | strip | truncatewords: 38, "…" }}</span>
+    </a>
+  </li>
+{% endfor %}
+</ul>
