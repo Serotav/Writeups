@@ -8,7 +8,7 @@ permalink: /v8/when-sorting-leads-to-confusion/
 # When Sorting Leads To Confusion
 
 ## Introduction
-In this blogpost I will discuss a chrome 0 day I found and reported in early August 2026, (CVE pending, come on google...) a v8 bug in the compilers that leads to an array containing `PACKED_ELEMENTS` to receive the map `PACKED_SMI_ELEMENTS`, this can be turned into arb r/w on the js heap. The bug was present in both maglev and turbofan, but we will focus on the former.
+In this blogpost I will discuss a chrome 0 day I found and reported in early August 2026 (CVE pending, come on google...), a v8 bug in the compilers that leads to an array containing `PACKED_ELEMENTS` to receive the map `PACKED_SMI_ELEMENTS`, this can be turned into arb r/w on the js heap. The bug was present in both maglev and turbofan, but we will focus on the former.
 
 I chained this bug with an n-day sandbox escape and flagged the v8CTF.
 
@@ -69,7 +69,7 @@ Let's see those preconditions one by one:
 - kMaxInlineSortSize is 16, array with more elements will use the normal builtin.
 
 The sorting won't happen in place but rather on a temporary FixedArray, this is because in js every function can have side effects,
-which includes the comparator function we give to sort, the comparator might, for absolutely no good reasons at all, modify the array we are trying to sort.
+which includes the comparator function we give to sort. The comparator might infact, for absolutely no good reasons at all, modify the array we are trying to sort.
 
 Once the sorting is done the elements from temp array are copied back into the original one.
 
@@ -220,7 +220,7 @@ bad[1] = {x:420}; // old -> young
 
 confuse(bad)
 
-bad.unshift(0); // [0, {}, {} <- skipped write barrier]
+bad.unshift(0); // [0, {}, {x:420} <- skipped write barrier]
 ```
 
 At this point getting arb r/w on the heap should be trivial, you only need to trigger minor gc and reclaim bad[2] with a fake array, same as [my other blog post](https://serotav.github.io/Writeups/v8/cve-2026-15776-from-regex-to-rce/).
