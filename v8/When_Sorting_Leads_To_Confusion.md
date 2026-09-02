@@ -8,7 +8,7 @@ permalink: /v8/when-sorting-leads-to-confusion/
 # When Sorting Leads To Confusion
 
 ## Introduction
-In this blogpost I will discuss a chrome 0 day I found and reported in early August 2026 (CVE pending, come on google...), a v8 bug in the compilers that leads to an array containing `PACKED_ELEMENTS` to receive the map `PACKED_SMI_ELEMENTS`, this can be turned into arb r/w on the js heap. The bug was present in both maglev and turbofan, but we will focus on the former.
+In this blogpost I will discuss a chrome 0 day I found and reported in early August 2026 (reserved CVE-2026-85046 not public yet), a v8 bug in the compilers that leads to an array containing `PACKED_ELEMENTS` to receive the map `PACKED_SMI_ELEMENTS`, this can be turned into arb r/w on the js heap. The bug was present in both maglev and turbofan, but we will focus on the former.
 
 I chained this bug with an n-day sandbox escape and flagged the v8CTF.
 
